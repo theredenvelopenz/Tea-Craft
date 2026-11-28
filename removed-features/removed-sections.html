@@ -1,0 +1,41 @@
+<!-- ===== BOOKING SECTION ===== -->
+<section class="section" id="book" style="background:#fff8ee;padding:85px 0"><div class="wrap book-wrap"><div><span class="eyebrow">Your next happy day starts here</span><h2>Save a seat at the craft table.</h2><p style="color:var(--muted);line-height:1.8;max-width:420px">Pick an activity, a day and a time. We’ll confirm by email within a day. Walk-ins are welcome too, but booked tables get first pick of the beads.</p></div>
+<div><form class="book-form" id="bookForm" name="booking" novalidate><input class="hp" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="fld full"><label for="bAct">What would you like to do?</label><select id="bAct" name="activity"><option>Craft table (walk-in style)</option><option>Kawaii Bracelet Workshop</option><option>Anime Art Night</option><option>Nail Art Masterclass</option><option>Beach Craft Festival</option><option>Bubble tea and a catch-up</option></select></div>
+<div class="fld"><label for="bDate">Date</label><input type="date" id="bDate" name="date" required><div class="err" data-for="bDate"></div></div>
+<div class="fld"><label for="bTime">Time</label><select id="bTime" name="time" required></select></div>
+<div class="fld"><label for="bGuests">Guests</label><select id="bGuests" name="guests"></select></div>
+<div class="fld"><label for="bName">Your name</label><input type="text" id="bName" name="name" autocomplete="name" required><div class="err" data-for="bName"></div></div>
+<div class="fld full"><label for="bEmail">Email</label><input type="email" id="bEmail" name="email" autocomplete="email" required><div class="err" data-for="bEmail"></div></div>
+<div class="fld full"><label for="bNote">Anything we should know? (optional)</label><textarea id="bNote" name="notes" rows="2"></textarea></div>
+<p class="note" style="grid-column:1/-1;margin:0 0 12px">We use your details only to manage this booking. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p><button class="btn btn-dark" type="submit">Request this booking</button></form><div class="book-form done" id="bookDone" hidden style="display:none"></div></div></div></section>
+
+
+<!-- ===== ORDER / CART / PAYMENT OVERLAYS ===== -->
+<div class="scrim" id="scrim"></div>
+<div class="sheet modal" id="opt" role="dialog" aria-modal="true" aria-labelledby="optTitle"><button class="close" type="button" data-close aria-label="Close">×</button><h3 id="optTitle"></h3><p class="sub">Make it yours.</p>
+<fieldset class="fld" id="sizeSet"><legend>Size</legend><div class="opts" id="sizeOpts"></div></fieldset>
+<fieldset class="fld"><legend>Sweetness</legend><div class="opts"><label class="opt"><input type="radio" name="sweet" value="100%" checked><span>100%</span></label><label class="opt"><input type="radio" name="sweet" value="70%"><span>70%</span></label><label class="opt"><input type="radio" name="sweet" value="50%"><span>50%</span></label><label class="opt"><input type="radio" name="sweet" value="30%"><span>30%</span></label></div></fieldset>
+<fieldset class="fld" id="topSet"><legend>Toppings</legend><div class="opts" id="topOpts"></div></fieldset>
+<div class="row"><div class="qty"><button type="button" id="qm" aria-label="Fewer">−</button><span id="qv" aria-live="polite">1</span><button type="button" id="qp" aria-label="More">+</button></div><button class="btn btn-dark" type="button" id="optAdd"></button></div></div>
+<aside class="sheet drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle"><button class="close" type="button" data-close aria-label="Close">×</button><h3 id="cartTitle">Your order</h3><p class="sub">Pick up at the counter and pay in store.</p>
+<div id="cartBody" style="display:flex;flex-direction:column;flex:1;min-height:0"><div class="cart-list" id="cartList"></div>
+<form id="orderForm" novalidate><div class="row" style="margin-bottom:12px"><span class="lbl" style="margin:0">Total (NZD)</span><strong id="cartTotal" style="font-size:1.3rem">$0.00</strong></div>
+<div class="fld"><label for="oName">Name for the order</label><input type="text" id="oName" autocomplete="name" required><div class="err" role="alert" data-for="oName"></div></div>
+<div class="fld"><label for="oEmail">Email (for your receipt)</label><input type="email" id="oEmail" autocomplete="email" required><div class="err" role="alert" data-for="oEmail"></div></div>
+<div class="fld"><label for="oPhone">Mobile (optional)</label><input type="tel" id="oPhone" autocomplete="tel"></div>
+<div class="fld"><label for="oWhen">Pick up</label><select id="oWhen"><option>As soon as possible</option><option>In about 15 minutes</option><option>In about 30 minutes</option><option>In about an hour</option></select></div>
+<fieldset class="fld" id="payChoice" hidden><legend>How would you like to pay?</legend><div class="opts"><label class="opt" id="payCardRow"><input type="radio" name="pm" value="card" id="pmCard" checked><span>Pay now by card</span></label><label class="opt"><input type="radio" name="pm" value="counter" id="pmCounter"><span>Pay at the counter</span></label></div></fieldset>
+<p class="err" role="alert" id="orderErr"></p><p class="note" id="orderPaused" hidden>Online ordering is paused for now. Please order at the counter.</p>
+<button class="btn btn-dark" type="submit" id="orderSubmit" style="width:100%;justify-content:center">Place order</button><p class="note" id="orderNote"></p><p class="note">We use your details only to make your order and keep our records. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p></form></div>
+<div class="done" id="orderDone" hidden></div></aside>
+<div class="sheet modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle"><button class="close" type="button" data-close aria-label="Close">×</button><h3 id="payTitle">Pay <span id="payAmount"></span></h3><p class="sub">Secure card payment</p>
+<div class="testbar" id="payTest"><strong>TEST MODE</strong> No money is taken. Please don’t enter a real card. <button type="button" id="fillTest" class="linkbtn">Use test card</button><details><summary>Test cards</summary><p>4242 4242 4242 4242 works. 4000 0000 0000 0002 is declined. 4000 0000 0000 9995 has insufficient funds. Any future expiry and any 3 digits.</p></details></div>
+<form id="payForm" novalidate><div class="fld"><label for="cNum">Card number</label><input type="text" id="cNum" inputmode="numeric" autocomplete="off" placeholder="1234 1234 1234 1234" maxlength="19"></div>
+<div class="two"><div class="fld"><label for="cExp">Expiry</label><input type="text" id="cExp" inputmode="numeric" autocomplete="off" placeholder="MM / YY" maxlength="7"></div><div class="fld"><label for="cCvc">CVC</label><input type="text" id="cCvc" inputmode="numeric" autocomplete="off" placeholder="123" maxlength="4"></div></div>
+<div class="fld"><label for="cName">Name on card</label><input type="text" id="cName" autocomplete="off"></div>
+<p class="err" role="alert" id="payErr"></p><button class="btn btn-dark" type="submit" id="payGo" style="width:100%;justify-content:center">Pay</button><button type="button" class="linkbtn" id="payBack" style="display:block;margin:12px auto 0">Back to my order</button></form></div>
+
+
+<!-- ===== NAV ORDER BUTTON ===== -->
+<a class="btn btn-dark nav-cta" href="#book">Plan your visit <span>↗</span></a><button class="cart-btn" id="cartBtn" type="button" aria-label="Open your order">🧋 <span>Order</span> <b id="cartCount">0</b></button>
